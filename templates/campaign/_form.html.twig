@@ -1,0 +1,15 @@
+{{ form_start(form) }}
+
+{{ form_row(form.creatorName) }}
+{{ form_row(form.creatorEmail) }}
+{{ form_row(form.title) }}
+<div class="input-field col s12">
+	{{ form_widget(form.content) }}
+</div>
+{{ form_row(form.goal) }}
+
+<button class="btn btn-large waves-effect waves-light pink lighten-1 col s12" style="margin-top: 20px;" type="submit" name="action">
+	Validez la campagne
+	<i class="material-icons right">send</i>
+</button>
+{{ form_end(form) }}

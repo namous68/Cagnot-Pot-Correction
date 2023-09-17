@@ -31,11 +31,15 @@ class Campaign
     #[ORM\Column]
     private ?int $goal = null;
 
-    #[ORM\Column(length: 255)]
-    private ?string $name = null;
 
     #[ORM\OneToMany(mappedBy: 'campaign', targetEntity: Participant::class, orphanRemoval: true)]
     private Collection $participants;
+
+    #[ORM\Column(length: 255)]
+    private ?string $creatorName = null;
+
+    #[ORM\Column(length: 255)]
+    private ?string $creatorEmail = null;
 
     public function __construct()
     {
@@ -107,18 +111,6 @@ class Campaign
         return $this;
     }
 
-    public function getName(): ?string
-    {
-        return $this->name;
-    }
-
-    public function setName(string $name): static
-    {
-        $this->name = $name;
-
-        return $this;
-    }
-
     /**
      * @return Collection<int, Participant>
      */
@@ -145,6 +137,30 @@ class Campaign
                 $participant->setCampaign(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getCreatorName(): ?string
+    {
+        return $this->creatorName;
+    }
+
+    public function setCreatorName(string $creatorName): static
+    {
+        $this->creatorName = $creatorName;
+
+        return $this;
+    }
+
+    public function getCreatorEmail(): ?string
+    {
+        return $this->creatorEmail;
+    }
+
+    public function setCreatorEmail(string $creatorEmail): static
+    {
+        $this->creatorEmail = $creatorEmail;
 
         return $this;
     }

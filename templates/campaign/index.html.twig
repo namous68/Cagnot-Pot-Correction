@@ -1,0 +1,66 @@
+{% extends 'base.html.twig' %}
+
+{% block stylesheets %}
+	<!--Import Google Icon Font-->
+	<link
+	href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+	<!--Import materialize.css-->
+	<link
+	type="text/css" rel="stylesheet" href="{{ asset('assets/css/materialize.min.css') }}" media="screen,projection"/>
+	<!--Custom styles-->
+	<link type="text/css" rel="stylesheet" href="{{ asset('assets/css/styles.css') }}" media="screen,projection"/>
+
+	<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 128 128%22><text y=%221.2em%22 font-size=%2296%22>⚫️</text></svg>">
+
+{% endblock %}
+
+{% block body %}
+	<h1>Campaign index</h1>
+
+	<table class="table">
+		<thead>
+			<tr>
+				<th>Id</th>
+				<th>Title</th>
+				<th>Content</th>
+				<th>CreatedAt</th>
+				<th>UpdatedAt</th>
+				<th>Goal</th>
+				<th>Name</th>
+				<th>actions</th>
+			</tr>
+		</thead>
+		<tbody>
+			{% for campaign in campaigns %}
+				<tr>
+					<td>{{ campaign.id }}</td>
+					<td>{{ campaign.title }}</td>
+					<td>{{ campaign.content }}</td>
+					<td>{{ campaign.createdAt ? campaign.createdAt|date('Y-m-d H:i:s') : '' }}</td>
+					<td>{{ campaign.updatedAt ? campaign.updatedAt|date('Y-m-d H:i:s') : '' }}</td>
+					<td>{{ campaign.goal }}</td>
+					<td>{{ campaign.creatorName }}</td>
+					<td>{{ campaign.creatorEmail }}</td>
+					<td>
+						<a href="{{ path('app_campaign_show', {'id': campaign.id}) }}">show</a>
+						<a href="{{ path('app_campaign_edit', {'id': campaign.id}) }}">edit</a>
+					</td>
+				</tr>
+			{% else %}
+				<tr>
+					<td colspan="8">no records found</td>
+				</tr>
+			{% endfor %}
+		</tbody>
+	</table>
+
+	<a href="{{ path('app_campaign_new') }}">Create new</a>
+{% endblock %}
+
+
+{% block javascripts %}
+	<!--JavaScript at end of body for optimized loading-->
+	<script type="text/javascript" src="{{ asset('assets/js/materialize.min.js') }}"></script>
+	<!--Init & custom scripts-->
+	<script type="text/javascript" src="{{ asset('assets/js/scripts.js') }}"></script>
+{% endblock %}

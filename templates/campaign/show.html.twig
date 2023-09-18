@@ -28,8 +28,12 @@
 	<!-- Show progress -->
 	<section class="progress-section">
 		<div class="progress">
-			<div class="determinate" style="width: 70%">
-				<span>70% de l'objectif</span>
+			<div class="determinate" style="width: 90%">
+				 {% if campaign.progressBar >= 100 %}
+                    <span>Objectif atteint.... {{ campaign.progressBar }} % de l'objectif</span>
+                {% else %}
+                    <span> {{ campaign.progressBar }} % de l'objectif</span>
+                {% endif %}
 			</div>
 		</div>
 	</section>
@@ -72,7 +76,7 @@
 						<div class="btn-large btn-floating white">
 							<i class="material-icons teal-text">redeem</i>
 						</div>
-						<h3 class="center">220</h3>
+						<h3 class="center">{{ campaign.getTotaleAmount }}</h3>
 						<p class="light">euros récoltés</p>
 					</div>
 				</div>
@@ -112,12 +116,12 @@
 
 						<tbody>
                             {% for participant in campaign.participants %}
-							<tr>
+							 <tr>
 								<td>{{ participant.email }}</td>
-								<td>5€</td>
-							</tr>
-
+								<td>{{ participant.getAddis() }} €</td>
+							 </tr>
                             {% endfor %}
+							
 						</tbody>
 					</table>
 				</div>
@@ -143,4 +147,18 @@
 	<script type="text/javascript" src="{{ asset('assets/js/materialize.min.js') }}"></script>
 	<!--Init & custom scripts-->
 	<script type="text/javascript" src="{{ asset('assets/js/scripts.js') }}"></script>
+
+	<script>
+    var pourcentage = {{ campaign.progressBar }};
+
+    var progressBar = document.getElementById('progressBar');
+
+    progressBar.style.width = pourcentage + '%';
+
+    if (pourcentage >= 100) {
+        progressBar.innerHTML = 'Objectif atteint.... ' + pourcentage + '% de l\'objectif';
+    } else {
+        progressBar.innerHTML = pourcentage + '% de l\'objectif';
+    }
+</script>
 {% endblock %}

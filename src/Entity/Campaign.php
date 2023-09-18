@@ -164,4 +164,31 @@ class Campaign
 
         return $this;
     }
+
+    public function getTotaleAmount(): int {
+        $payments = [];
+        foreach ($this->getParticipants() as $participant) {
+            array_push($payments, ...$participant->getPayments());
+        }
+
+        $addis = array_sum(array_map(function($payment) {
+            return $payment->getAmount();
+        }, $payments));
+
+        return $addis;
+    }
+
+    public function progressBar(): int
+    {
+        $goal = $this->getGoal();
+        $sum = $this->getTotaleAmount();
+        if( $goal === 0){
+            return 0;
+        }elseif($sum === $goal){
+            return 100;
+        }
+        return round(($sum/$goal)*100);
+    }
+
+
 }

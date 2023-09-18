@@ -103,4 +103,14 @@ class Participant
 
         return $this;
     }
+
+    public function getAddis(): int
+    { 
+        $arrayPayments =  $this->payments->toArray();
+        $addisTable = array_map(function($payment){
+            return $payment->getAmount();
+        }, $arrayPayments);
+        return array_sum($addisTable) ;
+    }
+
 }

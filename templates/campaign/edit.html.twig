@@ -1,5 +1,19 @@
 {% extends 'base.html.twig' %}
 
+{% block stylesheets %}
+	<!--Import Google Icon Font-->
+	<link
+	href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+	<!--Import materialize.css-->
+	<link
+	type="text/css" rel="stylesheet" href="{{ asset('assets/css/materialize.min.css') }}" media="screen,projection"/>
+	<!--Custom styles-->
+	<link type="text/css" rel="stylesheet" href="{{ asset('assets/css/styles.css') }}" media="screen,projection"/>
+
+	<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 128 128%22><text y=%221.2em%22 font-size=%2296%22>⚫️</text></svg>">
+{% endblock %}
+
+
 {% block title %}Edit Campaign{% endblock %}
 
 {% block body %}

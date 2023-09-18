@@ -84,10 +84,12 @@ footer.page-footer .footer-links{
     vertical-align: middle;
 }
 .carousel .carousel-item .progress{
-    height: 10px;
+    height: 25px;
+    background-color: rgb(194, 142, 243);
+    color: black;
 }
 .carousel .indicators .indicator-item{
-    background-color: rgba(0,150,136,.5);
+    background-color: rgba(24, 35, 243, 0.5);
 }
 .carousel .indicators .indicator-item.active{
     background-color: #009688;
